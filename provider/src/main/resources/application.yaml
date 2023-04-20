@@ -1,0 +1,14 @@
+server:
+  port: 8082 # zookeeper端口也会启动8080
+
+dubbo:
+  application:
+    name: provide
+
+  protocol:
+    name: dubbo
+    port: 20880
+
+  registry:
+    #  ?blockUntilConnectedWait=100000&timeout=100000 不加这个可能会导致连接失败,因为服务器的zookeeper连接有时比较慢
+    address: zookeeper://${zookeeper_host:127.0.0.1}:2181?blockUntilConnectedWait=100000&timeout=100000
