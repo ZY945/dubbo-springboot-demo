@@ -10,7 +10,8 @@ import org.example.service.HelloService;
 @DubboService(version = "1.0")
 public class DubboHelloServiceImpl1 implements HelloService {
     @Override
-    public String sayHello() {
-        return "dubbo1";
+    public String sayHello(String name) throws InterruptedException {
+        Thread.sleep(2000L);
+        return "dubbo1:hello,"+name;
     }
 }

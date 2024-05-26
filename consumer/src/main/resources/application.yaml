@@ -1,14 +1,23 @@
+spring:
+  application:
+    name: consumer
 server:
   port: 8081
 
 dubbo:
   application:
-    name: provide
-
+    name: consumer
+  consumer:
+    timeout: 15000
+    retries: 1
   protocol:
     name: dubbo
     port: 20880
 
   registry:
-    # ?blockUntilConnectedWait=100000&timeout=100000 不加这个可能会导致连接失败,因为服务器的zookeeper连接有时比较慢
-    address: zookeeper://${zookeeper_host:127.0.0.1}:2181?blockUntilConnectedWait=100000&timeout=100000
+    # 1.直连
+    address: N/A
+    # 2.注册中心
+  # ?blockUntilConnectedWait=100000&timeout=100000 不加这个可能会导致连接失败,因为服务器的zookeeper连接有时比较慢
+#    address: zookeeper://${zookeeper_host:127.0.0.1}:2181?blockUntilConnectedWait=100000&timeout=100000
+#    file:  F:/study/java_study/dubbo-demo/dubboFile/dubbo-cache/${spring.application.name}/dubbo.cache

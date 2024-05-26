@@ -10,7 +10,7 @@ import org.example.service.HelloService;
 @DubboService(version = "2.0")
 public class DubboHelloServiceImpl2 implements HelloService {
     @Override
-    public String sayHello() {
-        return "dubbo2";
+    public String sayHello(String name) {
+        return "dubbo2:hello,"+name;
     }
 }

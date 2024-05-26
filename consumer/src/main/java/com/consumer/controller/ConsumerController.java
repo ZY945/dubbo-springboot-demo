@@ -1,8 +1,10 @@
 package com.consumer.controller;
 
-import com.consumer.service.DubboService;
+import com.consumer.service.RemoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -24,10 +26,15 @@ public class ConsumerController {
 
 
     @Autowired
-    private DubboService dubboService;
+    private RemoteService dubboService;
 
-    @GetMapping("/dubbo")
-    public String sayHello() {
-        return dubboService.sayHello();
+    @GetMapping("/param")
+    public String sayHelloParam(@RequestParam String name) {
+        return dubboService.sayHello(name);
+    }
+
+    @GetMapping("/body")
+    public String sayHelloBody(@RequestBody String name) {
+        return dubboService.sayHello(name);
     }
 }
